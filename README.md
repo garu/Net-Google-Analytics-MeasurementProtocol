@@ -37,7 +37,7 @@ or manually:
     make test
     make install
 
-Please refer to [this module's complete documentation](https://metacpan.org/pod/Net::Google)
+Please refer to [this module's complete documentation](https://metacpan.org/pod/Net::Google::Analytics::MeasurementProtocol)
 for extra information.
 
 
