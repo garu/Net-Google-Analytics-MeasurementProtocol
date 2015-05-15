@@ -9,6 +9,10 @@ my %options = (
   ABSTRACT_FROM => 'lib/Net/Google/Analytics/MeasurementProtocol.pm',
   LICENSE       => 'perl',
   PL_FILES      => {},
+  ($ExtUtils::MakeMaker::VERSION >= 6.48
+      ? (MIN_PERL_VERSION => 5.006000)
+      : ()
+  ),
   PREREQ_PM     => {
     'Test::More' => 0.88,
     'Carp'       => 0,
