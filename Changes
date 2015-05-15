@@ -1,0 +1,9 @@
+Revision history for Net-Google-Analytics-MeasurementProtocol
+
+0.2 2015-05-15
+    - fixed POD error.
+    - added minimum perl version (5.6).
+    - added badges for travis / coveralls
+
+0.1 2015-05-14
+    - First release.
