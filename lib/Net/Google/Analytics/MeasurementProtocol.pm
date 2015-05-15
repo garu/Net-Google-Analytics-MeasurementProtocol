@@ -156,6 +156,8 @@ to customize behaviour.
 
 =head3 Required parameters:
 
+=over 4
+
 =item * tid
 String. This is the tracking ID / web property ID. You should have gotten
 this from your Google Analytics account, and it looks like C<"UA-XXXX-Y">.
