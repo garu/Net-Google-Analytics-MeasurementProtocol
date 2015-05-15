@@ -1,5 +1,8 @@
 ## Net-Google-Analytics-MeasurementProtocol ##
 
+[![Build Status](https://travis-ci.org/garu/Net-Google-Analytics-MeasurementProtocol.svg)](https://travis-ci.org/garu/Net-Google-Analytics-MeasurementProtocol)
+
+
 This is a Perl interface to [Google Analytics Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1/),
 allowing developers to make HTTP requests to send raw user interaction data
 directly to Google Analytics servers. It can be used to tie online to offline

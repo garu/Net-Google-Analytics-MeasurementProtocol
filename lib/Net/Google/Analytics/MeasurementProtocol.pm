@@ -108,6 +108,9 @@ __END__
 
 Net::Google::Analytics::MeasurementProtocol - send Google Analytics user interaction data from Perl
 
+=for html
+<a href="https://travis-ci.org/garu/Net-Google-Analytics-MeasurementProtocol"><img src="https://travis-ci.org/garu/Net-Google-Analytics-MeasurementProtocol.svg"></a>
+
 =head1 SYNOPSIS
 
     use Net::Google::Analytics::MeasurementProtocol;
