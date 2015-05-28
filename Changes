@@ -1,5 +1,8 @@
 Revision history for Net-Google-Analytics-MeasurementProtocol
 
+0.3
+    - fixed errors in olders perls.
+
 0.2 2015-05-15
     - fixed POD error.
     - added minimum perl version (5.6).
