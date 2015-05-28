@@ -18,8 +18,8 @@ else {
 }
 
 my $ga = Net::Google::Analytics::MeasurementProtocol->new(
-    tid => 'UA-1234-5',
-    debug       => 1,
+    tid   => 'UA-1234-5',
+    debug => 1,
 );
 
 my $res = $ga->send( 'pageview', {
