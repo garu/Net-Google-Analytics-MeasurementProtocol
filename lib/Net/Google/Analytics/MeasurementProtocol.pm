@@ -7,7 +7,7 @@ our $VERSION = 0.02;
 
 sub new {
     my $class = shift;
-    my %args = (@_ == 1 ? %$_[0] : @_ );
+    my %args = (@_ == 1 ? %{$_[0]} : @_ );
 
     Carp::croak 'tracking_id (tid) missing or invalid'
         unless $args{tid} && $args{tid} =~ /^(?:UA|MO|YT)-\d+-\d+$/;
