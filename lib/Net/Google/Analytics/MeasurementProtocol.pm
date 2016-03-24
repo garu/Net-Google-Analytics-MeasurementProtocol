@@ -24,11 +24,16 @@ sub new {
     $args{an}  ||= 'My App';
     $args{ds}  ||= 'app';
 
+    my $ua_object = $args{ua_object} || _build_user_agent( $args{ua} );
+    unless ( $ua_object->isa('Furl') || $ua_object->isa('LWP::UserAgent') ) {
+        Carp::croak('ua_object must be of type Furl or LWP::UserAgent');
+    }
+
     my $debug = delete $args{debug};
     return bless {
         args  => \%args,
         debug => $debug,
-        ua    => _build_user_agent( $args{ua} ),
+        ua    => $ua_object,
     }, $class;
 }
 
@@ -67,9 +72,14 @@ sub _request {
         : 'https://www.google-analytics.com/collect'
         ;
 
-    my $res = $ua->post( $target, undef, $args );
-
-    return $self->{debug} ? $res : $res->is_success;
+    # Compatibility layer for LWP::UserAgent
+    my $res = $ua->post( $target, $ua->isa('Furl') ? undef : (), $args );
+    if ($self->{debug}) {
+        return $res;
+    }
+    else {
+        return $self->{debug} ? $res : $res->is_success;
+    }
 }
 
 sub _build_user_agent {

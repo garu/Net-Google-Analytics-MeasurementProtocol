@@ -17,32 +17,53 @@ else {
     diag q(JSON looks missing. We'll make due with regexes);
 }
 
+my $has_lwp = eval {
+    require LWP::UserAgent;
+    require LWP::Protocol::https;
+    1;
+};
+
+test_pageview();
+
+SKIP: {
+    skip 'LWP::Protocol::https is likely not installed', 2, unless $has_lwp;
+    test_pageview( LWP::UserAgent->new );
+};
+
+sub test_pageview {
+    my $ua_object = shift;
+    diag 'Using ' . ( $ua_object ? 'LWP::UserAgent' : 'Furl' );
+
+    my $ga = Net::Google::Analytics::MeasurementProtocol->new(
+        tid   => 'UA-1234-5',
+        debug => 1,
+        $ua_object ? ( ua_object => $ua_object ) : (),
+    );
+
+
+    my $res = $ga->send( 'pageview', {
+        dh => 'www.colab55.com',
+        dp => '/pop',
+        dt => '/pop',
+    });
+
+    if ($has_json) {
+        my $json = JSON::decode_json( $res->decoded_content );
+        ok exists $json->{hitParsingResult}[0]{valid}, 'valid response fields';
+        is "$json->{hitParsingResult}[0]{valid}", 0, 'invalid response is invalid';
+    }
+    else {
+        like $res->decoded_content, qr/"valid": false/s, 'invalid response is invalid';
+    }
+
+}
+
 my $ga = Net::Google::Analytics::MeasurementProtocol->new(
-    tid   => 'UA-1234-5',
-    debug => 1,
-);
-
-my $res = $ga->send( 'pageview', {
-    dh => 'www.colab55.com',
-    dp => '/pop',
-    dt => '/pop',
-});
-
-if ($has_json) {
-    my $json = JSON::decode_json( $res->decoded_content );
-    ok exists $json->{hitParsingResult}[0]{valid}, 'valid response fields';
-    is "$json->{hitParsingResult}[0]{valid}", 0, 'invalid response is invalid';
-}
-else {
-    like $res->decoded_content, qr/"valid": false/s, 'invalid response is invalid';
-}
-
-$ga = Net::Google::Analytics::MeasurementProtocol->new(
     tid => 'UA-12345678-9',
     debug       => 1,
 );
 
-$res = $ga->send( 'pageview', {
+my $res = $ga->send( 'pageview', {
     dh => 'www.colab55.com',
     dp => '/pop',
 });
