@@ -68,12 +68,8 @@ sub _request {
         ;
 
     my $res = $ua->post( $target, undef, $args );
-    if ($self->{debug}) {
-        return $res;
-    }
-    else {
-        return substr($res->status, 0, 1) == 2;
-    }
+
+    return $self->{debug} ? $res : $res->is_success;
 }
 
 sub _build_user_agent {
