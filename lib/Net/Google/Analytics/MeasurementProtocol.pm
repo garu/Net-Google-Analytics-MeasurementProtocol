@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Carp ();
 
-our $VERSION = 0.03;
+our $VERSION = 0.04;
 
 sub new {
     my $class = shift;
@@ -176,7 +176,7 @@ All collected data is associated by this ID.
 =over 4
 
 =item * v (for "version")
-Number string. B<Defaults to '1'>, which is the current version (2015).
+Number string. B<Defaults to '1'>, which is the current version (March 2016).
 This is the protocol version to use. According to Google, this will only
 change when there are changes made that are not backwards compatible.
 
@@ -291,7 +291,7 @@ L<Measurement Protocol Developer Guide|https://developers.google.com/analytics/d
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2015 Breno G. de Oliveira C<< <garu at cpan.org> >>. All rights reserved.
+Copyright 2015-2016 Breno G. de Oliveira C<< <garu at cpan.org> >>. All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself. See L<perlartistic>.

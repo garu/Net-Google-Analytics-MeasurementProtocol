@@ -1,4 +1,6 @@
 Revision history for Net-Google-Analytics-MeasurementProtocol
+
+0.4 2016-03-28
     - allow a useragent to be supplied to the constructor via ua_object (Olaf Alders)
 
 0.3 2015-05-28
