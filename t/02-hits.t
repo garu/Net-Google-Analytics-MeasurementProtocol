@@ -17,13 +17,13 @@ else {
     diag q(JSON looks missing. We'll make due with regexes);
 }
 
+test_pageview();
+
 my $has_lwp = eval {
     require LWP::UserAgent;
     require LWP::Protocol::https;
     1;
 };
-
-test_pageview();
 
 SKIP: {
     skip 'LWP::Protocol::https is likely not installed', 2, unless $has_lwp;

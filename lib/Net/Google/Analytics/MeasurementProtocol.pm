@@ -206,6 +206,11 @@ String. B<Defaults to "app">. Indicates the data source of the hit.
 =item * ua (for "user agent")
 String. Defaults to "Net::Google::Analytics::MeasurementProtocol/$VERSION".
 
+=item * ua_object
+
+Object.  Either a L<Furl> object, L<LWP::UserAgent> or something with inherits
+from L<LWP::UserAgent>, like L<WWW::Mechanize>. Defaults to using L<Furl>.
+
 =back
 
 =head3 Other parameters
