@@ -79,12 +79,8 @@ sub _request {
 
     # Compatibility layer for LWP::UserAgent
     my $res = $ua->post( $target, $ua->isa('Furl') ? undef : (), $args );
-    if ($self->{debug}) {
-        return $res;
-    }
-    else {
-        return $self->{debug} ? $res : $res->is_success;
-    }
+
+    return $self->{debug} ? $res : $res->is_success;
 }
 
 sub _build_user_agent {
