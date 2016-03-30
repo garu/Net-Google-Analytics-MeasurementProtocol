@@ -24,7 +24,7 @@ sub new {
     $args{an}  ||= 'My App';
     $args{ds}  ||= 'app';
 
-    my $ua_object = $args{ua_object} || _build_user_agent( $args{ua} );
+    my $ua_object = delete $args{ua_object} || _build_user_agent( $args{ua} );
     unless ( $ua_object->isa('Furl') || $ua_object->isa('LWP::UserAgent') ) {
         Carp::croak('ua_object must be of type Furl or LWP::UserAgent');
     }
@@ -38,6 +38,12 @@ sub new {
 }
 
 sub send {
+    my ($self, $hit_type, $args) = @_;
+
+    return $self->_request( $self->_build_request_args( $hit_type, $args ) );
+}
+
+sub _build_request_args {
     my ($self, $hit_type, $args) = @_;
 
     my %args = (%{$self->{args}}, %$args, t => $hit_type);
@@ -59,8 +65,7 @@ sub send {
     }
     Carp::croak('for "pageview" hit types you must set either "dl" or both "dh" and "dp"')
         if $hit_type eq 'pageview' && !($args{dl} || ($args{dh} && $args{dp}));
-
-    return $self->_request(\%args);
+    return \%args;
 }
 
 sub _request {
