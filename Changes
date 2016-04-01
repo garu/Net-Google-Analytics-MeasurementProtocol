@@ -1,6 +1,8 @@
 Revision history for Net-Google-Analytics-MeasurementProtocol
 
-    - ensure ua_object is not sent in POST to Google Analytics
+0.5 2016-04-01
+    - ensure ua_object is not sent in POST to Google Analytics (Olaf Alders)
+    - code improvements (Andy Jack)
 
 0.4 2016-03-28
     - allow a user agent to be supplied to the constructor via ua_object (Olaf Alders)
