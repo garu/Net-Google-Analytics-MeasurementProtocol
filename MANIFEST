@@ -6,4 +6,3 @@ README.md
 t/00-load.t
 t/01-uuid.t
 t/02-hits.t
-t/03-args.t
